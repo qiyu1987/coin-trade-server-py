@@ -12,11 +12,21 @@ def home():
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
-        if not request.form.get("email") or not request.form.get("password"):
+        if not request.form.get("username") or not request.form.get("password"):
             return "failure"
         return "success"
     else:
         return render_template("signup.html")
+
+
+@app.route("/login", methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        if not request.form.get("username") or not request.form.get("password"):
+            return "failure"
+        return "success"
+    else:
+        return render_template("login.html")
 
 
 app.debug = True
