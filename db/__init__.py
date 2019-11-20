@@ -26,9 +26,9 @@ try:
     print("Table created successfully in PostgreSQL ")
 
     # insert record
-    insert_user_query = """ INSERT INTO users (id, username, password) VALUES (%s,%s,%s)"""
+    insert_user_query = """ INSERT INTO users (username, password) VALUES (%s,%s)"""
     insert_wallet_query = """ INSERT INTO wallets (id, eur, user_id) VALUES (%s,%s,%s)"""
-    users_to_insert = [(1, 'yuki', 'yuki'), (2, 'xiaodan', 'xiaodan')]
+    users_to_insert = [('yuki', 'yuki'), ('xiaodan', 'xiaodan')]
     cursor.executemany(insert_user_query, users_to_insert)
     connection.commit()
     count = cursor.rowcount
