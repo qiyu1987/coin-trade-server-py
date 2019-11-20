@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "env/bin/python"
+	"python.pythonPath": "/Users/qiyu/codaisseur/week-10/hackathon/coin-trade-server-py/virtual/bin/python3.8",
+	"python.jediEnabled": true
 }
