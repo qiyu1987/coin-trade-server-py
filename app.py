@@ -27,12 +27,18 @@ try:
     cursor = connection.cursor()
     # Print PostgreSQL Connection properties
     print(connection.get_dsn_parameters(), "\n")
-
-    create_table_query = '''CREATE TABLE mobile
+    drop_existing_table_query = '''DROP TABLE IF EXISTS users CASCADE;
+        DROP TABLE IF EXISTS wallets CASCADE;'''
+    create_table_query = '''CREATE TABLE users
         (ID INT PRIMARY KEY     NOT NULL,
-        MODEL           TEXT    NOT NULL,
-        PRICE         REAL); '''
+        username           TEXT    NOT NULL,
+        password         TEXT); 
+        CREATE TABLE wallets
+        (ID INT PRIMARY KEY     NOT NULL,
+        eur           MONEY    NOT NULL); 
+        '''
 
+    cursor.execute(drop_existing_table_query)
     cursor.execute(create_table_query)
     connection.commit()
     print("Table created successfully in PostgreSQL ")
