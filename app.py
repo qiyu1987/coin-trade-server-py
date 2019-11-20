@@ -28,6 +28,15 @@ try:
     # Print PostgreSQL Connection properties
     print(connection.get_dsn_parameters(), "\n")
 
+    create_table_query = '''CREATE TABLE mobile
+        (ID INT PRIMARY KEY     NOT NULL,
+        MODEL           TEXT    NOT NULL,
+        PRICE         REAL); '''
+
+    cursor.execute(create_table_query)
+    connection.commit()
+    print("Table created successfully in PostgreSQL ")
+
     # Print PostgreSQL version
     cursor.execute("SELECT version();")
     record = cursor.fetchone()
