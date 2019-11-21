@@ -1,7 +1,7 @@
-import psycopg2
 from flask import Flask, render_template, request
 from models import User, app, db
-
+import json
+db.drop_all()
 db.create_all()
 
 @app.route("/")
@@ -11,11 +11,14 @@ def home():
 
 @app.route("/signup", methods=['GET', 'POST'])
 def signup():
-    username = request.form.get("username")
-    password = request.form.get("password")
+    username = request.get_json()['username']
+    password = request.get_json()['password']
     if request.method == 'POST':
         if not username or not password:
             return "failure"
+        useraccount = User(username=username,password=password)
+        db.session.add(useraccount)
+        db.session.commit()
         return "success"
 
     else:

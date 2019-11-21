@@ -1,5 +1,9 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+"""This module is not for function of project,
+    it is for a testing ground for the developer to test new library
+    for the moment that library is flask-sqlqlchemy"""
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgres://postgres:secret@localhost:5432/postgres"
