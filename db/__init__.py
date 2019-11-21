@@ -27,13 +27,13 @@ try:
 
     # insert record
     insert_user_query = """ INSERT INTO users (username, password) VALUES (%s,%s)"""
-    insert_wallet_query = """ INSERT INTO wallets (id, eur, user_id) VALUES (%s,%s,%s)"""
+    insert_wallet_query = """ INSERT INTO wallets (eur, user_id) VALUES (%s,%s)"""
     users_to_insert = [('yuki', 'yuki'), ('xiaodan', 'xiaodan')]
     cursor.executemany(insert_user_query, users_to_insert)
     connection.commit()
     count = cursor.rowcount
     print(count, "Record inserted successfully into users table")
-    wallets_to_insert = [(1, 10000, 1), (2, 10000, 2)]
+    wallets_to_insert = [(10000, 1), (10000, 2)]
     cursor.executemany(insert_wallet_query, wallets_to_insert)
     connection.commit()
     count = cursor.rowcount
