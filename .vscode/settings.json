@@ -1,4 +1,5 @@
 {
 	"python.pythonPath": "/Users/qiyu/.local/share/virtualenvs/coin-trade-server-py-h2DNS3L7/bin/python",
-	"python.jediEnabled": true
+	"python.jediEnabled": true,
+	"python.linting.enabled": false
 }
