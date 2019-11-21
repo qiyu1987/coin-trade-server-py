@@ -1,7 +1,8 @@
 import psycopg2
 from flask import Flask, render_template, request
-app = Flask(__name__)
+from models import User, app, db
 
+db.create_all()
 
 @app.route("/")
 def home():
