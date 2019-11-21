@@ -9,11 +9,13 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/signup", methods=['POST'])
+@app.route("/signup", methods=['GET','POST'])
 def signup():
-    username = request.get_json()['username']
-    password = request.get_json()['password']
     if request.method == 'POST':
+        print(request.form)
+        username = request.form.get('username')
+        password = request.form.get('password')
+        print(username,password)
         if not username or not password:
             return "failure"
         useraccount = User(username=username,password=password)
