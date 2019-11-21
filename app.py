@@ -1,5 +1,5 @@
-from flask import Flask, render_template, request
-from models import User, app, db
+from flask import Flask, render_template, request, jsonify
+from models import User, app, db, user_schema
 import json
 db.drop_all()
 db.create_all()
@@ -9,7 +9,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/signup", methods=['GET', 'POST'])
+@app.route("/signup", methods=['POST'])
 def signup():
     username = request.get_json()['username']
     password = request.get_json()['password']
@@ -19,7 +19,8 @@ def signup():
         useraccount = User(username=username,password=password)
         db.session.add(useraccount)
         db.session.commit()
-        return "success"
+        result = User.query.filter_by(username=username).first()
+        return user_schema.jsonify(result)
 
     else:
         return render_template("signup.html")
